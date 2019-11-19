@@ -75,11 +75,11 @@ hs_err_pid*
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
-# .idea/modules.xml
-# .idea/*.iml
-# .idea/modules
-# *.iml
-# *.ipr
+.idea/modules.xml
+.idea/*.iml
+.idea/modules
+*.iml
+*.ipr
 
 # CMake
 cmake-build-*/
@@ -114,6 +114,7 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
+
 ### macOS template
 # General
 .DS_Store
@@ -142,3 +143,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Exclude everything in .idea
+.idea/**
