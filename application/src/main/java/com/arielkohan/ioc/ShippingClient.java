@@ -4,13 +4,13 @@ import com.arielkohan.ioc.model.order.Address;
 import com.arielkohan.ioc.model.order.Order;
 import com.arielkohan.ioc.model.order.OrderItem;
 import com.arielkohan.ioc.model.order.Product;
-import com.arielkohan.ioc.shipping.sdks.UpsLibrary;
+import com.arielkohan.ioc.shipping.Shipping;
 
 import java.util.List;
 
 class ShippingClient {
 
-    private static final String DEFAULT_ADDRESS = "Sydney P Sherman Wallaby 40 . 128";
+    private static final Address DEFAULT_ADDRESS = Address.parseString("Sydney P Sherman Wallaby 40 . 128");
     private Order orderToProcess;
 
     public ShippingClient() {
@@ -29,10 +29,11 @@ class ShippingClient {
     }
 
     public void shipStuff() {
-        UpsLibrary.UpsShipmentRequest shippingRequest = generateUpsShippingRequest(orderToProcess);
-        final float price = UpsLibrary.calculatePrice(shippingRequest);
+        final Address fromAddress = DEFAULT_ADDRESS;
+        final Address destinationAddress = orderToProcess.getAddress();
+        final float price = Shipping.calculateStandardPrice(fromAddress, destinationAddress);
         if(isShippingPriceAcceptable(price)) {
-            UpsLibrary.ship(shippingRequest);
+            Shipping.standardShip(fromAddress, destinationAddress);
         }
     }
 
@@ -41,12 +42,4 @@ class ShippingClient {
         return yeap;
     }
 
-    private UpsLibrary.UpsShipmentRequest generateUpsShippingRequest(Order orderToProcess) {
-        final Address destinationAddress = orderToProcess.getAddress();
-        return new UpsLibrary.UpsShipmentRequest(
-                DEFAULT_ADDRESS,
-                destinationAddress.toString(),
-                UpsLibrary.STANDARD_SHIPPING_TYPE
-        );
-    }
 }
