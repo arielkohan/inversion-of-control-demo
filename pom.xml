@@ -10,20 +10,41 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>model</module>
-        <module>shipping</module>
+        <module>ups-shipping</module>
         <module>application</module>
+        <module>shipping-interface</module>
+        <module>shipping-client</module>
     </modules>
 
     <properties>
         <java.version>11</java.version>
         <lombok.version>1.18.10</lombok.version>
+        <spring-boot-dependencies.version>2.2.1.RELEASE</spring-boot-dependencies.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

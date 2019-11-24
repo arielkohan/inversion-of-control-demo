@@ -1,4 +1,4 @@
-package com.arielkohan.ioc;
+package com.arielkohan.ioc.shipping_client;
 
 import com.arielkohan.ioc.model.order.Address;
 import com.arielkohan.ioc.model.order.Order;

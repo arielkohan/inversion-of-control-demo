@@ -9,17 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ups-shipping</artifactId>
+    <artifactId>shipping-client</artifactId>
 
     <dependencies>
+
         <dependency>
             <groupId>com.arielkohan.IoC</groupId>
-            <artifactId>model</artifactId>
+            <artifactId>shipping-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.arielkohan.IoC</groupId>
-            <artifactId>shipping-interface</artifactId>
+            <artifactId>model</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
