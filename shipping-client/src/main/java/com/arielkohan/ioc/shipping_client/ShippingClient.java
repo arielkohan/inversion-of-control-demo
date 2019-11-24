@@ -4,16 +4,23 @@ import com.arielkohan.ioc.model.order.Address;
 import com.arielkohan.ioc.model.order.Order;
 import com.arielkohan.ioc.model.order.OrderItem;
 import com.arielkohan.ioc.model.order.Product;
-import com.arielkohan.ioc.shipping.Shipping;
+import com.arielkohan.ioc.shipping_interface.Shipping;
+import com.arielkohan.ioc.shipping_interface.ShippingRequest;
+import com.arielkohan.ioc.shipping_interface.ShippingType;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-class ShippingClient {
+@Component
+public class ShippingClient {
 
     private static final Address DEFAULT_ADDRESS = Address.parseString("Sydney P Sherman Wallaby 40 . 128");
+
+    private final Shipping shipping;
     private Order orderToProcess;
 
-    public ShippingClient() {
+    public ShippingClient(Shipping shipping) {
+        this.shipping = shipping;
         generateOrderToProcess();
     }
 
@@ -30,10 +37,10 @@ class ShippingClient {
 
     public void shipStuff() {
         final Address fromAddress = DEFAULT_ADDRESS;
-        final Address destinationAddress = orderToProcess.getAddress();
-        final float price = Shipping.calculateStandardPrice(fromAddress, destinationAddress);
+        final ShippingRequest shippingRequest = new ShippingRequest(fromAddress, orderToProcess, ShippingType.CHEAPEST);
+        final float price = shipping.calculatePrice(shippingRequest);
         if(isShippingPriceAcceptable(price)) {
-            Shipping.standardShip(fromAddress, destinationAddress);
+            shipping.ship(shippingRequest);
         }
     }
 
@@ -41,5 +48,4 @@ class ShippingClient {
         boolean yeap = true;
         return yeap;
     }
-
 }
