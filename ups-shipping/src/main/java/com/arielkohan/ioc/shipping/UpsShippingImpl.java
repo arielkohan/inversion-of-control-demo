@@ -7,9 +7,7 @@ import com.arielkohan.ioc.shipping.sdks.UpsLibrary;
 import com.arielkohan.ioc.shipping_interface.Shipping;
 import com.arielkohan.ioc.shipping_interface.ShippingRequest;
 import com.arielkohan.ioc.shipping_interface.ShippingTypeNotAvailableException;
-import org.springframework.stereotype.Component;
 
-@Component
 public class UpsShippingImpl implements Shipping {
 
     @Override
