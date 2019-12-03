@@ -12,7 +12,7 @@ class ShippingClientTest {
     private boolean calculateCalled;
     private boolean shipCalled;
     
-    // Plain Java Mock Implementation
+    // Plain Anonymous Class Mock Implementation
     private Shipping shipping = new Shipping() {
         @Override
         public float calculatePrice(ShippingRequest request) {
