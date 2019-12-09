@@ -1,6 +1,7 @@
 # Inversion of Control + Dependency Injection Demo
 
-This demo was created to provide a real world example to the article: [TODO].
+This demo was created to provide a real world example to the article: [The Importance of Inversion of Control and the way to Achieve it using Dependency Injection
+](https://medium.com/@arielkohan/inversion-of-control-ac8dd48e4341).
 
 ## Requirements
 - Java 11
